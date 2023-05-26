@@ -17,7 +17,7 @@ const bigcommerceSigned = new BigCommerce({
   responseType: "json",
 });
 
-interface QueryParams {
+export interface QueryParams {
   [key: string]: string;
 }
 
