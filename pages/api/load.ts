@@ -1,12 +1,16 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { QueryParams, getBCVerify } from "../../lib/auth";
+import { encodePayload, getBCVerify, setSession } from "../../lib/auth";
 
 export default async function load(req: NextApiRequest, res: NextApiResponse) {
   try {
-    await getBCVerify(req.query as QueryParams);
-    res.redirect(302, "/");
+    // Verify when app loaded (launch)
+    const session = await getBCVerify(req.query);
+    const encodedContext = encodePayload(session); // Signed JWT to validate/ prevent tampering
+
+    await setSession(session);
+    res.redirect(302, `/?context=${encodedContext}`);
   } catch (error) {
     const { message, response } = error;
-    res.status(response?.status || 500).json(message);
+    res.status(response?.status || 500).json({ message });
   }
 }

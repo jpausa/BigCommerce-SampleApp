@@ -2,7 +2,7 @@ import * as jwt from "jsonwebtoken";
 import { NextApiRequest, NextApiResponse } from "next";
 import * as BigCommerce from "node-bigcommerce";
 import { QueryParams, SessionProps } from "../types";
-import db from "./dbs/firebase";
+import db from "./db";
 
 const { AUTH_CALLBACK, CLIENT_ID, CLIENT_SECRET, JWT_KEY } = process.env;
 

@@ -1,12 +1,14 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { QueryParams, getBCVerify } from "../../lib/auth";
+import { getBCVerify, removeSession } from "../../lib/auth";
 
 export default async function uninstall(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   try {
-    await getBCVerify(req.query as QueryParams);
+    const session = await getBCVerify(req.query);
+
+    await removeSession(res, session);
     res.status(200).end();
   } catch (error) {
     const { message, response } = error;
