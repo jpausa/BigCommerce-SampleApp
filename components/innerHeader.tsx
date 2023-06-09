@@ -6,6 +6,7 @@ import { TabIds, TabRoutes } from "./header";
 
 const InnerHeader = () => {
   const router = useRouter();
+  
   const { pid } = router.query;
   const { list = [] } = useProductList();
   const { name } = list.find((item) => item.id === Number(pid)) ?? {};

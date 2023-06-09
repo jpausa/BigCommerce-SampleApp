@@ -12,6 +12,7 @@ const ProductInfo = () => {
   const { pid } = router.query;
   const { isError, isLoading, list = [], mutateList } = useProductList();
   const product = list.find((item) => item.id === Number(pid));
+
   const {
     description,
     is_visible: isVisible,

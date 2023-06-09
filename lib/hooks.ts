@@ -30,10 +30,10 @@ export function useProductList() {
     error,
     mutate: mutateList,
   } = useSWR(
-    encodedContext ? [`/api/products/list?context=${encodedContext}`] : null,
+    encodedContext ? `/api/products/list?context=${encodedContext}` : null,
     fetcher
   );
-
+    
   return {
     list: data,
     isLoading: !data && !error,

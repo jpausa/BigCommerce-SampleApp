@@ -9,6 +9,7 @@ export default async function list(req: NextApiRequest, res: NextApiResponse) {
     const params = ["limit=11"].join("&");
 
     const { data } = await bigcommerce.get(`/catalog/products?${params}`);
+
     res.status(200).json(data);
   } catch (error) {
     const { message, response } = error;

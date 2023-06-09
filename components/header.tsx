@@ -25,6 +25,7 @@ const Header = () => {
   const [headerType, setHeaderType] = useState<string>(HeaderTypes.GLOBAL);
   const router = useRouter();
   const { pathname } = router;
+  
 
   useEffect(() => {
     if (InnerRoutes.includes(pathname)) {

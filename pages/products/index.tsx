@@ -16,8 +16,10 @@ import Loading from "../../components/loading";
 
 const Products = () => {
   const router = useRouter();
+
   // get data from the v3 catalog/products
   const { isError, isLoading, list = [] } = useProductList();
+
   // Properly format data for StatefulTable
   const tableItems = list.map(
     ({ id, inventory_level: stock, name, price }) => ({
@@ -27,6 +29,7 @@ const Products = () => {
       stock,
     })
   );
+
   // When rendering table headers, you can return a string or a React component
   const renderName = (id: number, name: string): ReactElement => (
     <Link href={`/products/${id}`}>
