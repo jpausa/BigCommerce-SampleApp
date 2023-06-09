@@ -2,6 +2,7 @@ import { Db } from "../types";
 
 const { DB_TYPE } = process.env;
 
+
 let db: Db;
 
 switch (DB_TYPE) {

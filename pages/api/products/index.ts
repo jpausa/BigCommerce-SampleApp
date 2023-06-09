@@ -7,6 +7,7 @@ export default async function products(
 ) {
   try {
     const { accessToken, storeHash } = await getSession(req);
+    
     const bigcommerce = bigcommerceClient(accessToken, storeHash);
 
     const { data } = await bigcommerce.get("/catalog/summary");

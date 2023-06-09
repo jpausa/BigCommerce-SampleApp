@@ -8,6 +8,7 @@ import { SessionProps, UserData } from "../../types";
 // Destructure the Firebase API key, domain, and project ID from the environment variables
 const { FIRE_API_KEY, FIRE_DOMAIN, FIRE_PROJECT_ID } = process.env;
 
+
 // Set up the Firebase config
 const firebaseConfig = {
   apiKey: FIRE_API_KEY,
@@ -26,6 +27,7 @@ if (!firebase.apps.length) {
 // Set up the database
 const db = firebase.firestore();
 
+
 // Add Firestore database management functions
 
 // setUser will capture information about the user
@@ -36,6 +38,7 @@ export async function setUser({ context, user }: SessionProps) {
   const storeHash = context?.split("/")[1] || "";
   const ref = db.collection("users").doc(String(id));
   const data: UserData = { email, storeHash };
+
 
   if (username) {
     data.username = username;
@@ -52,8 +55,7 @@ export async function setStore(session: SessionProps) {
 
   const storeHash = context?.split("/")[1] || "";
   const ref = db.collection("store").doc(storeHash);
-  const data = { accessToken, scope };
-
+  const data = { accessToken, scope };;
   await ref.set(data);
 }
 
