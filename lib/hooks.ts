@@ -17,6 +17,27 @@ export function useProducts() {
 
   return {
     summary: data,
+    isLoading: !data && !error,
     isError: error,
+  };
+}
+
+export function useProductList() {
+  const encodedContext = useSession()?.context;
+  // Use an array to send multiple arguments to fetcher
+  const {
+    data,
+    error,
+    mutate: mutateList,
+  } = useSWR(
+    encodedContext ? [`/api/products/list?context=${encodedContext}`] : null,
+    fetcher
+  );
+
+  return {
+    list: data,
+    isLoading: !data && !error,
+    isError: error,
+    mutateList,
   };
 }
