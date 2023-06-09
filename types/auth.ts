@@ -11,6 +11,7 @@ export interface SessionProps {
   context: string;
   store_hash?: string;
   timestamp?: number;
+  sub: string;
 }
 
 export interface QueryParams {
